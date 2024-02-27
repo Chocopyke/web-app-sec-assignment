@@ -23,29 +23,26 @@
         </div>
         <script>
             function isvalid() {
-                var user = document.form.user.value;
-                var pass = document.form.pass.value;
+                var user = document.form.user.value.trim();
+                var pass = document.form.pass.value.trim();
                 
                 // Regular expression to check if the input contains only letters and digits
                 var letterNumber = /^[0-9a-zA-Z]+$/;
                 
-                if (user.length === 0 && pass.length === 0) {
-                    alert("Username and password fields are empty!!!");
-                    return false;
-                } else if (user.length === 0) {
-                    alert("Username field is empty!!!");
-                    return false;
-                } else if (pass.length === 0) {
-                    alert("Password field is empty!!!");
-                    return false;
-                } else if (!user.match(letterNumber)) {
-                    alert("Username should contain only letters and digits!!!");
-                    return false;
-                } else if (!pass.match(letterNumber)) {
-                    alert("Password should contain only letters and digits!!!");
+                var userValid = user.length > 0 && user.match(letterNumber);
+                var passValid = pass.length > 0 && pass.match(letterNumber);
+                
+                if (!userValid || !passValid) {
+                    if (!userValid) {
+                        alert("Username should contain only letters and digits!!!");
+                    }
+                    if (!passValid) {
+                        alert("Password should contain only letters and digits!!!");
+                    }
                     return false;
                 }
-            }                
+                return true;
+            }               
         </script>
     </body>
 </html>
